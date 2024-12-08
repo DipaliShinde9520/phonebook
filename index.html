@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhoneBook</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        body {
+            width: 100%;
+            height: 100vh;
+            background-color: whitesmoke;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            font-size: 45px;
+            color: rgb(253, 8, 171);
+            text-decoration: underline;
+        }
+        .phonebook-container {
+            border-radius: 10px;
+            width: 600px;
+            height: 400px;
+            background-color: rgb(245, 204, 237);
+            border: 2px solid black
+        }
+        #search {
+            padding: 10px;
+            width: 320px;
+            border-radius: 5px;
+            border: 1px solid black;
+        }
+        button {
+            padding: 10px 25px;
+            border-radius: 5px;
+            border: 1px solid black;
+            background-color:rgb(247, 126, 241) ;
+         }
+        .search-sec {
+            margin: 30px 20px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            gap: 5px;
+            height: 40px;
+        }
+        #result {
+            text-align: center;
+            color: rgb(253, 8, 171) ;
+            background-color:rgb(247, 126, 241) ;
+            font-size: 18px;
+            border: 1px solid black;
+            max-width: 410px;
+            padding: 10px;
+            margin: 0px auto;
+            border-radius: 5px;
+            display: none; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Phone Book</h1>
+    <div class="phonebook-container">
+        <div class="search-sec">
+            <input type="text" id="search" placeholder="Search Contact...">
+            <button type="button" onclick="search()">Search</button>
+        </div>
+        <p id="result"></p>
+    </div>
+    
+    <script>
+        const contacts = {
+            Satyam: 7894561231,
+            Sanvi: 7521489630,
+            Param: 9521478631,
+            Tanvi: 9856321478,
+            Jay: 7894561231,
+            Mayur: 9563214782,
+            Gaurav: 9587412631,
+        };
+
+        function search() {
+            const searchInput = document.getElementById("search").value.trim(); 
+            const result = document.getElementById("result");
+            
+            result.style.display = "none";
+
+            for (let name in contacts) {
+                if (name.toLowerCase() === searchInput.toLowerCase()) {
+                    result.innerHTML = `<strong>${name}</strong>:<strong>${contacts[name]}</strong>`;
+                    result.style.display = "block"; 
+                    return;
+                }
+            }
+
+            result.innerHTML = `Contact not found`;
+            result.style.display = "block"; 
+        }
+    </script>
+</body>
+</html>
